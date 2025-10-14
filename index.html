@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twlxxx</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Кнопка переключения темы -->
+    <button class="theme-toggle" id="themeToggle">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <div class="tile" id="mainCard">
+        <div class="tile-content">
+            <!-- Аватарка с анимацией -->
+            <div class="tile-content-image">
+                <img src="images/Marinett.jpg" alt="картинка" class="tile-image">
+                <div class="avatar-hover"></div>
+            </div>
+            
+            <!-- Никнейм -->
+            <div class="username-container">
+                <span class="username-text">Twilexxx</span>
+                <div class="underline-track"></div>
+            </div>
+
+            <!-- Секция "О себе" -->
+            <div class="about-section">
+                <div class="about-content">
+                    <p class="about-text">♥️Out of a thousand faces...<br>one might miraculously linger.</p>
+                </div>
+            </div>
+            
+            <!-- Социальные кнопки с разными цветами -->
+            <div class="tile-inner-content">
+                <div class="tile-inner-content-url">
+                    <a href="https://www.twitch.tv/twilexxx" 
+                    class="btn twitch-btn" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="Twitch">
+                    <img src="images/twitch.png" alt="Twitch" class="social-img">
+                    </a>
+                </div> 
+                <div class="tile-inner-content-url">
+                    <a href="https://t.me/Twilexxxxx" 
+                    class="btn telegram-btn" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="Telegram">
+                    <img src="images/telegram.png" alt="Telegram" class="social-img">
+                    </a>
+                </div>
+                <div class="tile-inner-content-url">
+                    <a href="https://www.tiktok.com/@twilexxx" 
+                    class="btn tiktok-btn" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="TikTok">
+                    <img src="images/tik-tok.png" alt="TikTok" class="social-img">
+                    </a>
+                </div>
+                <div class="tile-inner-content-url">
+                    <a href="https://www.instagram.com/vadim_twilex/" 
+                    class="btn instagram-btn" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="Instagram">
+                    <img src="images/instagram.png" alt="Instagram" class="social-img">
+                    </a>
+                </div>
+                <div class="tile-inner-content-url">
+                    <a href="https://discord.gg/TRAqh9PHCw" 
+                    class="btn discord-btn" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="Discord">
+                    <img src="images/discord.png" alt="Discord" class="social-img">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Фоновые декоративные элементы -->
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration-2"></div>
+    <div class="bg-decoration-3"></div>
+    <div class="bottom-button-container">
+        <a href="https://dalink.to/twilexxx" 
+            class="orange-button" 
+            id="orangeButton"
+            target="_blank"
+            rel="noopener noreferrer">
+            <span class="button-text">Поддержать</span>
+            <div class="button-glow"></div>
+        </a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
