@@ -309,7 +309,7 @@ body {
 .tile-inner-content {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 12px;
     flex-wrap: wrap;
     margin-top: 16px;
     animation: fadeIn 1s ease 0.6s both;
@@ -325,14 +325,12 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
-    
     display: flex;
     align-items: center;
     justify-content: center;
     width: 56px;
     height: 56px;
     padding: 0;
-    
     box-shadow: 0 4px 12px var(--shadow-color);
     position: relative;
     overflow: hidden;
