@@ -384,7 +384,7 @@ body {
 /* Адаптивность */
 @media (max-width: 768px) {
     .tile-content {
-        gap: 14px; /* Уменьшил для планшетов */
+        gap: 8px; /* Уменьшил для планшетов */
     }
     
     .username-container {
@@ -424,11 +424,21 @@ body {
     
     .tile-inner-content {
         gap: 12px;
+        justify-content: center;
+        flex-wrap: nowrap; /* Запрещаем перенос */
+        overflow-x: auto; /* Добавляем горизонтальную прокрутку если нужно */
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    .tile-inner-content-url {
+        flex-shrink: 0; /* Запрещаем сжатие */
     }
     
     .btn {
-        width: 52px;
-        height: 52px;
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
     }
     
     .social-img {
@@ -486,11 +496,14 @@ body {
     
     .tile-inner-content {
         gap: 10px;
+        padding: 8px 0;
+        justify-content: space-between; /* Равномерное распределение */
     }
     
     .btn {
         width: 48px;
         height: 48px;
+        min-width: 48px;
     }
     
     .social-img {
@@ -501,6 +514,23 @@ body {
     .bg-decoration,
     .bg-decoration-2 {
         display: none;
+    }
+}
+
+@media (max-width: 360px) {
+    .tile-inner-content {
+        gap: 8px;
+    }
+        
+    .btn {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+    }
+        
+    .social-img {
+        width: 18px;
+        height: 18px;
     }
 }
 
