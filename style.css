@@ -7,9 +7,9 @@
 /* Оранжевая пастельная цветовая схема */
 :root {
     --bg-gradient: #ffb380;
-    --card-bg: #ffddcc;
-    --card-border: #ffc299;
-    --text-primary: #8c4600;
+    --card-bg: rgba(255, 221, 204, 0.2);
+    --card-border: rgba(255, 194, 153, 0.3);
+    --text-primary: #642800;
     --text-secondary: #cc5500;
     --accent-color: #ff8c42;
     --shadow-color: rgba(255, 140, 66, 0.15);
@@ -23,10 +23,10 @@
 }
 
 [data-theme="dark"] {
-    --bg-gradient: #8c4600;
-    --card-bg: #331a00;
-    --card-border: #cc5500;
-    --text-primary: #ffddcc;
+    --bg-gradient: #884200;
+    --card-bg: #4b1e00;
+    --card-border: rgba(204, 85, 0, 0.2);
+    --text-primary: #ffad73;
     --text-secondary: #ffad73;
     --accent-color: #ff8c42;
     --shadow-color: rgba(255, 140, 66, 0.2);
@@ -34,7 +34,7 @@
     --button-bg: #8c4600;
     --twitch-color: #bf94ff;
     --telegram-color: #00a2ff;
-    --tiktok-color: #3d3d3d;
+    --tiktok-color: #292929;
     --instagram-color: #ff6b9c;
     --discord-color: #7289da;
 }
@@ -109,38 +109,73 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 40px;
-    border: 2px solid var(--card-border);
-    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 221, 204, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px var(--shadow-color);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
     z-index: 1000;
 }
 
 .theme-toggle:hover {
     transform: scale(1.05) rotate(15deg);
     border-color: var(--accent-color);
-    background: var(--button-bg);
+    background: rgba(255, 179, 128, 0.3);
 }
 
-/* Основная карточка */
+/* Основная карточка с стеклянным эффектом */
 .tile {
     background: var(--card-bg);
     border-radius: 40px;
     padding: 48px 40px;
     max-width: 600px;
     width: 100%;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
     text-align: center;
     transition: all 0.5s ease, transform 0.1s ease;
-    border: 2px solid var(--card-border);
-    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     transform-style: preserve-3d;
     perspective: 1000px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 100px; /* Добавляем отступ снизу для кнопки */
+}
+
+.tile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    border-radius: 40px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+[data-theme="dark"] .tile::before {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
 }
 
 @keyframes slideUp {
@@ -310,13 +345,17 @@ body {
     display: flex;
     justify-content: center;
     gap: 10px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Запрещаем перенос на новую строку */
     margin-top: 16px;
     animation: fadeIn 1s ease 0.6s both;
+    overflow-x: auto; /* Добавляем горизонтальную прокрутку если не помещается */
+    padding: 10px 5px;
+    width: 100%;
 }
 
 .tile-inner-content-url {
     display: flex;
+    flex-shrink: 0; /* Запрещаем сжатие кнопок */
 }
 
 .btn {
@@ -331,7 +370,7 @@ body {
     width: 56px;
     height: 56px;
     padding: 0;
-    box-shadow: 0 4px 12px var(--shadow-color);
+    box-shadow: 0 4px 12px var(--shadow-color); /* Тень для всех кнопок */
     position: relative;
     overflow: hidden;
 }
@@ -353,15 +392,30 @@ body {
 
 .btn:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 20px var(--shadow-color);
+    box-shadow: 0 8px 20px var(--shadow-color); /* Усиленная тень при hover */
 }
 
 /* Индивидуальные цвета для кнопок */
-.twitch-btn { background: var(--twitch-color); }
-.telegram-btn { background: var(--telegram-color); }
-.tiktok-btn { background: var(--tiktok-color); }
-.instagram-btn { background: var(--instagram-color); }
-.discord-btn { background: var(--discord-color); }
+.twitch-btn { 
+    background: var(--twitch-color); 
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--twitch-color) 30%, transparent 70%);
+}
+.telegram-btn { 
+    background: var(--telegram-color); 
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--telegram-color) 30%, transparent 70%);
+}
+.tiktok-btn { 
+    background: var(--tiktok-color); 
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--tiktok-color) 30%, transparent 70%);
+}
+.instagram-btn { 
+    background: var(--instagram-color); 
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--instagram-color) 30%, transparent 70%);
+}
+.discord-btn { 
+    background: var(--discord-color); 
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--discord-color) 30%, transparent 70%);
+}
 
 .btn:hover {
     border-color: var(--accent-color);
@@ -381,166 +435,7 @@ body {
     transform: scale(1.1) rotate(5deg);
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .tile-content {
-        gap: 8px; /* Уменьшил для планшетов */
-    }
-    
-    .username-container {
-        margin: 6px 0; /* Уменьшил для мобильных */
-    }
-    
-    .about-content {
-        padding: 14px 18px; /* Уменьшил для мобильных */
-    }
-    
-    .about-content p {
-        margin: 3px 0; /* Уменьшил для мобильных */
-    }
-
-    .theme-toggle {
-        top: 16px;
-        right: 16px;
-        width: 44px;
-        height: 44px;
-        font-size: 16px;
-    }
-    
-    .tile {
-        padding: 36px 28px;
-        margin: 20px;
-        border-radius: 24px;
-    }
-    
-    .tile-image {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .username-text {
-        font-size: 28px;
-    }
-    
-    .tile-inner-content {
-        gap: 12px;
-        justify-content: center;
-        flex-wrap: nowrap; /* Запрещаем перенос */
-        overflow-x: auto; /* Добавляем горизонтальную прокрутку если нужно */
-        padding: 10px 0;
-        width: 100%;
-    }
-
-    .tile-inner-content-url {
-        flex-shrink: 0; /* Запрещаем сжатие */
-    }
-    
-    .btn {
-        width: 50px;
-        height: 50px;
-        min-width: 50px;
-    }
-    
-    .social-img {
-        width: 22px;
-        height: 22px;
-    }
-    
-    .about-content {
-        padding: 16px;
-    }
-    
-    .about-content p {
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 480px) {
-    .tile-content {
-        gap: 12px; /* Еще меньше для маленьких экранов */
-    }
-    
-    .username-container {
-        margin: 4px 0;
-    }
-    
-    .about-content {
-        padding: 12px 16px;
-    }
-    
-    .about-content p {
-        margin: 2px 0;
-    }
-
-    .theme-toggle {
-        top: 12px;
-        right: 12px;
-        width: 40px;
-        height: 40px;
-        font-size: 14px;
-    }
-    
-    .tile {
-        padding: 32px 24px;
-        border-radius: 20px;
-    }
-    
-    .tile-image {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .username-text {
-        font-size: 24px;
-    }
-    
-    .tile-inner-content {
-        gap: 10px;
-        padding: 8px 0;
-        justify-content: space-between; /* Равномерное распределение */
-    }
-    
-    .btn {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-    }
-    
-    .social-img {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .bg-decoration,
-    .bg-decoration-2 {
-        display: none;
-    }
-}
-
-@media (max-width: 360px) {
-    .tile-inner-content {
-        gap: 8px;
-    }
-        
-    .btn {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-    }
-        
-    .social-img {
-        width: 18px;
-        height: 18px;
-    }
-}
-
-/* Анимация вращения кнопки темы */
-.theme-rotate {
-    transform: scale(0.9) rotate(360deg) !important;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-}
-
-/* Оранжевая кнопка внизу */
+/* Оранжевая кнопка внизу с стеклянным эффектом */
 .bottom-button-container {
     position: fixed;
     bottom: 30px;
@@ -555,19 +450,24 @@ body {
 }
 
 .orange-button {
-    background: linear-gradient(135deg, var(--accent-color), var(--text-secondary));
-    border: 2px solid var(--card-border);
+    background: linear-gradient(135deg, 
+        rgba(255, 140, 66, 0.8), 
+        rgba(204, 85, 0, 0.8)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50px;
     padding: 16px 32px;
-    color: white;
+    color: #ffd1af;
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 
-        0 8px 25px var(--shadow-color),
-        0 0 0 0 rgba(255, 140, 66, 0.7);
+        0 8px 25px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -597,8 +497,8 @@ body {
 .orange-button:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 
-        0 15px 35px var(--shadow-color),
-        0 0 0 10px rgba(255, 140, 66, 0.1);
+        0 15px 35px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.2);
     border-color: var(--accent-color);
     color: white;
     text-decoration: none;
@@ -637,13 +537,13 @@ body {
 @keyframes pulseGlow {
     0%, 100% {
         box-shadow: 
-            0 8px 25px var(--shadow-color),
-            0 0 0 0 rgba(255, 140, 66, 0.4);
+            0 8px 25px rgba(0, 0, 0, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
     }
     50% {
         box-shadow: 
-            0 8px 25px var(--shadow-color),
-            0 0 0 8px rgba(255, 140, 66, 0.1);
+            0 8px 25px rgba(0, 0, 0, 0.1),
+            0 0 0 5px rgba(255, 140, 66, 0.1);
     }
 }
 
@@ -651,8 +551,92 @@ body {
     animation: pulseGlow 3s ease-in-out infinite;
 }
 
-/* Адаптивность для кнопки */
+/* Анимация вращения кнопки темы */
+.theme-rotate {
+    transform: scale(0.9) rotate(360deg) !important;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.username-container.copied,
+.about-content.copied {
+    background: rgba(255, 140, 66, 0.2);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
+    .tile-content {
+        gap: 8px;
+    }
+    
+    .username-container {
+        margin: 6px 0;
+    }
+    
+    .about-content {
+        padding: 14px 18px;
+    }
+    
+    .about-content p {
+        margin: 3px 0;
+    }
+
+    .theme-toggle {
+        top: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+    }
+    
+    .tile {
+        padding: 36px 28px;
+        margin: 20px;
+        border-radius: 24px;
+        margin-bottom: 120px; /* Увеличиваем отступ для мобильных */
+    }
+    
+    .tile-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .username-text {
+        font-size: 28px;
+    }
+    
+    .tile-inner-content {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 10px 5px;
+        gap: 12px;
+    }
+
+    .tile-inner-content-url {
+        flex-shrink: 0;
+    }
+    
+    .btn {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+    }
+    
+    .social-img {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .about-content {
+        padding: 16px;
+    }
+    
+    .about-content p {
+        font-size: 13px;
+    }
+    
     .bottom-button-container {
         bottom: 25px;
         padding: 0 20px;
@@ -666,6 +650,69 @@ body {
 }
 
 @media (max-width: 480px) {
+    .tile-content {
+        gap: 12px;
+    }
+    
+    .username-container {
+        margin: 4px 0;
+    }
+    
+    .about-content {
+        padding: 12px 16px;
+    }
+    
+    .about-content p {
+        margin: 2px 0;
+    }
+
+    .theme-toggle {
+        top: 12px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .tile {
+        padding: 32px 24px;
+        border-radius: 20px;
+        margin-bottom: 110px; /* Отступ для маленьких экранов */
+    }
+    
+    .tile-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .username-text {
+        font-size: 24px;
+    }
+    
+    .tile-inner-content {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 8px 5px;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+    }
+    
+    .social-img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .bg-decoration,
+    .bg-decoration-2 {
+        display: none;
+    }
+    
     .bottom-button-container {
         bottom: 20px;
         padding: 0 16px;
@@ -684,9 +731,65 @@ body {
     }
 }
 
-.username-container.copied,
-.about-content.copied {
-    background: rgba(255, 140, 66, 0.2);
-    border-radius: 10px;
-    transition: all 0.3s ease;
+@media (max-width: 360px) {
+    .tile-inner-content {
+        gap: 8px;
+    }
+
+    .tile {
+        margin-bottom: 100px; /* Минимальный отступ для самых маленьких экранов */
+    }
+        
+    .btn {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+    }
+        
+    .social-img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Убираем все выделения на сайте */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Разрешаем выделение для текста, который нужно копировать */
+.username-text,
+.about-text {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Убираем выделение при клике на кнопки и ссылки */
+button,
+a,
+.btn,
+.theme-toggle,
+.orange-button {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+/* Убираем стандартное выделение при фокусе */
+*:focus {
+    outline: none;
+}
+
+/* Убираем выделение для изображений */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 }
