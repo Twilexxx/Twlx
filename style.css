@@ -344,18 +344,19 @@ body {
 .tile-inner-content {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    flex-wrap: nowrap; /* Запрещаем перенос на новую строку */
-    margin-top: 16px;
+    gap: 12px;
+    flex-wrap: nowrap;
+    margin-top: 20px;
     animation: fadeIn 1s ease 0.6s both;
-    overflow-x: auto; /* Добавляем горизонтальную прокрутку если не помещается */
-    padding: 10px 5px;
-    width: 100%;
+    width: 100%; /* Убираем скролл */
+    overflow: visible;
+    padding: 0; /* Запрещаем сжатие */
+    flex-shrink: 0;
 }
 
 .tile-inner-content-url {
-    display: flex;
-    flex-shrink: 0; /* Запрещаем сжатие кнопок */
+    display: flex; /* Запрещаем сжатие кнопок */
+    flex-shrink: 0;
 }
 
 .btn {
@@ -370,9 +371,11 @@ body {
     width: 56px;
     height: 56px;
     padding: 0;
-    box-shadow: 0 4px 12px var(--shadow-color); /* Тень для всех кнопок */
+    box-shadow: 0 4px 12px var(--shadow-color);
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Запрещаем сжатие */
+    flex-shrink: 0;
+    min-width: 56px;
 }
 
 .btn::before {
@@ -434,6 +437,8 @@ body {
 .btn:hover .social-img {
     transform: scale(1.1) rotate(5deg);
 }
+
+
 
 /* Оранжевая кнопка внизу с стеклянным эффектом */
 .bottom-button-container {
@@ -608,10 +613,10 @@ body {
     
     .tile-inner-content {
         flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding: 10px 5px;
+        overflow: visible; /* Убираем скролл */
+        justify-content: center; /* Центрируем кнопки */
         gap: 12px;
+        padding: 0;
     }
 
     .tile-inner-content-url {
@@ -691,10 +696,10 @@ body {
     
     .tile-inner-content {
         flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding: 8px 5px;
+        overflow: visible;
+        justify-content: center;
         gap: 10px;
+        padding: 0;
     }
     
     .btn {
