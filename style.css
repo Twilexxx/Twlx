@@ -519,8 +519,7 @@ body {
     min-height: 54px; /* Фиксированная высота */
     justify-content: center;
     pointer-events: all;
-    text-decoration: none;
-    /* Запрещаем изменение размеров */
+    text-decoration: none; /* Запрещаем изменение размеров */
     flex-shrink: 0;
     width: auto;
 }
@@ -690,10 +689,10 @@ body {
     }
     
     .orange-button {
-        min-width: 160px; /* Такая же ширина как на ПК */
-        min-height: 54px; /* Такая же высота как на ПК */
-        padding: 16px 32px;
-        font-size: 16px;
+        min-width: 140px; /* Уменьшаем ширину */
+        min-height: 47px; /* Уменьшаем высоту (сохраняем пропорции ~2.96:1) */
+        padding: 12px 24px;
+        font-size: 14px;
     }
 }
 
@@ -769,10 +768,10 @@ body {
     }
     
     .orange-button {
-        min-width: 160px;
-        min-height: 54px;
-        padding: 16px 32px;
-        font-size: 16px; /* Убираем адаптивную ширину */
+        min-width: 130px; /* Еще немного уменьшаем */
+        min-height: 44px; /* Сохраняем пропорции */
+        padding: 11px 22px;
+        font-size: 13px; /* Убираем адаптивную ширину */
         width: auto;
         max-width: none;
     }
@@ -807,10 +806,10 @@ body {
     }
 
     .orange-button {
-        min-width: 160px;
-        min-height: 54px;
-        padding: 16px 32px;
-        font-size: 16px;
+        min-width: 120px; /* Минимальный размер */
+        min-height: 40px; /* Сохраняем пропорции */
+        padding: 10px 20px;
+        font-size: 12px;
     }
 }
 
