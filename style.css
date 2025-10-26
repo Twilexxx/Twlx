@@ -574,6 +574,12 @@ body {
 
 /* Адаптивность */
 @media (max-width: 768px) {
+    body {
+        overflow: hidden;
+        height: 100vh;
+        padding: 10px;
+    }
+
     .tile-content {
         gap: 8px;
     }
@@ -647,8 +653,11 @@ body {
     }
     
     .bottom-button-container {
-        bottom: 25px;
-        padding: 0 20px;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
     }
     
     .orange-button {
@@ -659,6 +668,10 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
     .tile-content {
         gap: 12px;
     }
@@ -725,8 +738,7 @@ body {
     }
     
     .bottom-button-container {
-        bottom: 20px;
-        padding: 0 16px;
+        bottom: 15px;
     }
     
     .orange-button {
