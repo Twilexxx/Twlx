@@ -131,13 +131,13 @@ body {
     background: rgba(255, 179, 128, 0.3);
 }
 
-/* Основная карточка с стеклянным эффектом */
+/* Основная карточка с фиксированным размером */
 .tile {
     background: var(--card-bg);
     border-radius: 40px;
     padding: 48px 40px;
-    max-width: 600px;
-    width: 100%;
+    width: 600px; /* Фиксированная ширина */
+    min-height: 400px; /* Минимальная высота */
     box-shadow: 
         0 15px 35px rgba(0, 0, 0, 0.1),
         0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -150,7 +150,10 @@ body {
     perspective: 1000px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 100px; /* Добавляем отступ снизу для кнопки */
+    margin-bottom: 100px;
+    /* Запрещаем изменение размера */
+    flex-shrink: 0;
+    max-width: 600px;
 }
 
 .tile::before {
@@ -596,10 +599,11 @@ body {
     }
     
     .tile {
+        width: 90vw; /* На мобильных занимает 90% ширины экрана */
+        max-width: 400px;
+        min-height: 300px;
         padding: 36px 28px;
-        margin: 20px;
-        border-radius: 24px;
-        margin-bottom: 120px; /* Увеличиваем отступ для мобильных */
+        margin: 20px auto;
     }
     
     .tile-image {
@@ -680,9 +684,11 @@ body {
     }
     
     .tile {
+        width: 92vw;
+        max-width: 400px;
+        min-height: 300px;
         padding: 32px 24px;
-        border-radius: 20px;
-        margin-bottom: 110px; /* Отступ для маленьких экранов */
+        margin-bottom: 110px;
     }
     
     .tile-image {
@@ -742,7 +748,11 @@ body {
     }
 
     .tile {
-        margin-bottom: 100px; /* Минимальный отступ для самых маленьких экранов */
+        width: 95vw;
+        max-width: 400px;
+        min-height: 300px;
+        padding: 28px 20px;
+        margin-bottom: 100px;
     }
         
     .btn {
