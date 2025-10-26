@@ -490,6 +490,7 @@ body {
     pointer-events: none;
 }
 
+/* Оранжевая кнопка внизу с фиксированными пропорциями */
 .orange-button {
     background: linear-gradient(135deg, 
         rgba(255, 140, 66, 0.8), 
@@ -514,10 +515,14 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    min-width: 160px;
+    min-width: 160px; /* Фиксированная минимальная ширина */
+    min-height: 54px; /* Фиксированная высота */
     justify-content: center;
     pointer-events: all;
     text-decoration: none;
+    /* Запрещаем изменение размеров */
+    flex-shrink: 0;
+    width: auto;
 }
 
 .orange-button::before {
@@ -685,9 +690,10 @@ body {
     }
     
     .orange-button {
-        padding: 14px 28px;
-        font-size: 15px;
-        min-width: 140px;
+        min-width: 160px; /* Такая же ширина как на ПК */
+        min-height: 54px; /* Такая же высота как на ПК */
+        padding: 16px 32px;
+        font-size: 16px;
     }
 }
 
@@ -763,11 +769,12 @@ body {
     }
     
     .orange-button {
-        padding: 12px 24px;
-        font-size: 14px;
-        min-width: 130px;
-        width: 100%;
-        max-width: 200px;
+        min-width: 160px;
+        min-height: 54px;
+        padding: 16px 32px;
+        font-size: 16px; /* Убираем адаптивную ширину */
+        width: auto;
+        max-width: none;
     }
     
     .orange-button:hover {
@@ -797,6 +804,13 @@ body {
     .social-img {
         width: 18px;
         height: 18px;
+    }
+
+    .orange-button {
+        min-width: 160px;
+        min-height: 54px;
+        padding: 16px 32px;
+        font-size: 16px;
     }
 }
 
