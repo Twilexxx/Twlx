@@ -53,6 +53,41 @@ body {
     overflow-x: hidden;
 }
 
+/* Убираем скролл на телефонах */
+@media (max-width: 768px) {
+    body {
+        overflow: hidden;
+        height: 100vh;
+        padding: 10px;
+    }
+    
+    .tile {
+        margin-bottom: 20px;
+    }
+    
+    .bottom-button-container {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .tile {
+        margin-bottom: 15px;
+    }
+    
+    .bottom-button-container {
+        bottom: 15px;
+    }
+}
+
 /* Фоновые декорации */
 .bg-decoration {
     position: fixed;
@@ -441,8 +476,6 @@ body {
     transform: scale(1.1) rotate(5deg);
 }
 
-
-
 /* Оранжевая кнопка внизу с стеклянным эффектом */
 .bottom-button-container {
     position: fixed;
@@ -574,12 +607,6 @@ body {
 
 /* Адаптивность */
 @media (max-width: 768px) {
-    body {
-        overflow: hidden;
-        height: 100vh;
-        padding: 10px;
-    }
-
     .tile-content {
         gap: 8px;
     }
@@ -653,11 +680,8 @@ body {
     }
     
     .bottom-button-container {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto;
+        bottom: 25px;
+        padding: 0 20px;
     }
     
     .orange-button {
@@ -668,10 +692,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 5px;
-    }
-
     .tile-content {
         gap: 12px;
     }
@@ -738,7 +758,8 @@ body {
     }
     
     .bottom-button-container {
-        bottom: 15px;
+        bottom: 20px;
+        padding: 0 16px;
     }
     
     .orange-button {
